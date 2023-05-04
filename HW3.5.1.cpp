@@ -1,20 +1,59 @@
-﻿// HW3.5.1.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
+﻿#include <iostream>
+#include <string>
 
-#include <iostream>
+
+class Figure
+{
+protected:
+	int numberOfSides_ = 0;
+	std::string nameOfFigure_;
+
+public:
+	Figure() : Figure(0, "Фигура") {};
+	Figure(int numberOfSides, std::string nameOfFigure)
+	{
+		numberOfSides_ = numberOfSides;
+		nameOfFigure_ = nameOfFigure;
+	};
+
+	int getNumberOfSides() const { return numberOfSides_; } 
+
+	std::string getNameOfFigure() const { return nameOfFigure_; }
+};
+
+class Triangle : public Figure
+{
+public:
+
+	Triangle() : Figure(3, "Треугольник") {};
+
+};
+
+class Quadrilateral : public Figure
+{
+public:
+
+	Quadrilateral() : Figure(4, "Четырехугольник") {};
+};
+
+void print(Figure& xFig) 
+{
+	std::cout << xFig.getNameOfFigure() << ": " << xFig.getNumberOfSides() << std::endl;
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
-}
+	setlocale(LC_ALL, "Russian");
+	system("chcp 1251");
 
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
+	std::cout << std::endl << "Количество сторон: " << std::endl;
 
-// Советы по началу работы 
-//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
-//   2. В окне Team Explorer можно подключиться к системе управления версиями.
-//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
-//   4. В окне "Список ошибок" можно просматривать ошибки.
-//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
-//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
+	Figure Figure1;
+	print(Figure1);
+
+	Triangle Triangle1;
+	print(Triangle1);
+
+	Quadrilateral Quadrilateral1;
+	print(Quadrilateral1);
+};
